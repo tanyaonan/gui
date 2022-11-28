@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html>
+	<head>
+		<title>我是标题</title>
+	</head>
+	<body width="700" height="600">
+		<div>
+			<span>外部</span>
+			<div>
+				<span>内部</span>
+			</div>
+			<button id="btn">点击测试</button>
+		</div>
+		<div>
+		    <span>用户名：</span>
+		    <input id="user" value="admin" />
+		    <span>密码：</span>
+		    <input id="pass" type="text" />
+		    <button id="submit">登录</button>
+		</div>
+		<div>
+			<span>测试多选框</span>
+			<input id="cbox" type="checkbox" name="同意" />
+			<button id="setCbox">设置选中状态</button>
+			<button id="setCboxEnb">设置禁用/启用</button>
+		</div>
+		<div>
+			<span>测试下拉框</span>
+			<select>
+			  <option value="0">蛋糕</option>
+			  <option value="1">饼干</option>
+			  <option value="2">甜甜圈</option>
+			</select>
+		</div>
+		<div>
+			<span>-------------------------------------------</span>
+			<h1>标题1</h1>
+			<h2>标题2</h2>
+			<h3>标题3</h3>
+			<h4>标题4</h4>
+			<h5>标题5</h5>
+			<h6>标题6</h6>
+		</div>
+	</body>
+</html>

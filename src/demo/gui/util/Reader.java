@@ -16,7 +16,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import java.awt.Color;
 import java.io.IOException;
-import java.net.URL;
+
 /**
  * 布局阅读器
  * @author tanyaonan
@@ -32,8 +32,8 @@ public class Reader {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		try {
 			DocumentBuilder db = dbf.newDocumentBuilder();
-			URL path = Reader.class.getClassLoader().getResource("demo/gui/layout/" + xmlPath);
-			Document document = db.parse(path.toString());
+			String path = this.getClass().getClassLoader().getResource("res/layout/" + xmlPath).getPath();
+			Document document = db.parse(path);
 			
 			// 绑定容器
 			layout.setContentPane(Panel);

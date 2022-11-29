@@ -37,6 +37,7 @@ public class Reader {
 			
 			// 绑定容器
 			layout.setContentPane(Panel);
+			Panel.setBackground(new Color(245, 245, 245));
 			// 设置布局管理器
 			layout.setLayout(new LayoutManager());
 			
@@ -90,7 +91,8 @@ public class Reader {
 	// 构建div全部子节点
 	private void buildDivChild(NodeList childNodes, JPanel panel2) {
 		JPanel panel = new JPanel(); // 子容器
-		panel.setBorder(BorderFactory.createLineBorder(new Color(205, 205, 205), 1));
+		panel.setBorder(BorderFactory.createLineBorder(new Color(197, 196, 197), 1));
+		panel.setBackground(new Color(237, 236, 236));
 		
 		if (panel2 != null) {
 			panel2.add(panel);

@@ -32,9 +32,9 @@ public class LayoutManager extends LayoutAdapter {
 		for (int i = 0; i < child.length; i++) {
 			Component component = child[i];
 			int viewHeight = 50;
-			component.setBounds(x, y, width, viewHeight);
+			component.setBounds(x, y + 10, width, viewHeight);
 			
-			y += viewHeight;
+			y += viewHeight + 10;
 		}
 	}
 }

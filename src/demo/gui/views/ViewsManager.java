@@ -32,6 +32,7 @@ public class ViewsManager {
 	public void setTextView(String text, NamedNodeMap arributes, JPanel panel) {
 		JLabel label = new JLabel(text);
 		panel.add(label);
+		label.setForeground(new Color(45, 45, 45));
 	}
 	
 	/**
@@ -43,7 +44,7 @@ public class ViewsManager {
 	public void setTitleTextView(String text, NamedNodeMap arributes, JPanel panel, int size) {
 		JLabel label = new JLabel(text);
 		panel.add(label);
-		label.setForeground(new Color(41, 41, 41));  // 设置前景色 字体颜色
+		label.setForeground(new Color(45, 45, 45));  // 设置前景色 字体颜色
 //		label.setOpaque(true); // 背景不透明：此情况下的背景色才会生效
 //		label.setBackground(new Color(255, 255, 255)); // 设置背景色
 		
@@ -84,7 +85,10 @@ public class ViewsManager {
 	public void setButtonView(String text, NamedNodeMap arributes, JPanel panel) {
 		JButton button = new JButton(text);
 		panel.add(button);
-		
+		button.setBackground(new Color(198, 198, 198));
+		button.setOpaque(true);
+		button.setBorderPainted(false);
+		button.setForeground(new Color(45, 45, 45));
 		if (arributes.getNamedItem("id") != null) {
 			String id = arributes.getNamedItem("id").getTextContent();
 			R.setId(id, button);

@@ -5,6 +5,7 @@
 	</head>
 	<body width="700" height="600">
 		<div>
+			<span>嵌套测试</span>
 			<span>外部</span>
 			<div>
 				<span>内部0</span>

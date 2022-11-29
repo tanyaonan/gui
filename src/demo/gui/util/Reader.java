@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
 import java.io.IOException;
 import java.net.URL;
 /**
@@ -35,6 +36,8 @@ public class Reader {
 			
 			// 绑定容器
 			layout.setContentPane(panel);
+			// 设置布局管理器
+//			layout.setLayout(new BorderLayout());
 			
 			// 构建head节点
 			buildHead(document.getElementsByTagName("head"));

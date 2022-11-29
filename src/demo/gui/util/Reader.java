@@ -1,7 +1,6 @@
 package demo.gui.util;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -9,11 +8,13 @@ import org.xml.sax.SAXException;
 
 import demo.gui.views.ViewsManager;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.net.URL;
 /**
@@ -25,7 +26,7 @@ public class Reader {
 	
 	private Layout layout = new Layout(); // 布局控件
 	private ViewsManager viewsManager = new ViewsManager(); // 控件管理器
-	private JPanel panel = new JPanel();
+	private JPanel Panel = new JPanel(); // 主容器
 	
 	public Reader(String xmlPath) {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -35,9 +36,9 @@ public class Reader {
 			Document document = db.parse(path.toString());
 			
 			// 绑定容器
-			layout.setContentPane(panel);
+			layout.setContentPane(Panel);
 			// 设置布局管理器
-//			layout.setLayout(new BorderLayout());
+			layout.setLayout(new LayoutManager());
 			
 			// 构建head节点
 			buildHead(document.getElementsByTagName("head"));
@@ -46,7 +47,7 @@ public class Reader {
 			buildBody(document.getElementsByTagName("body"));
 			
 			// 构建div节点
-			buildNode(document.getElementsByTagName("div"), "div");
+			buildDiv(getDom(document.getElementsByTagName("body")));
 			
 			// 显示布局
 			layout.setVisible(true);
@@ -59,34 +60,54 @@ public class Reader {
 		}
 	}
 	
-	// 构建公共节点以及子节点
-	private void buildNode(NodeList list, String name) {
-		if (list.getLength() > 0) {
+	private NodeList getDom(NodeList nodeList) {
+		if (nodeList.getLength() > 0) {
+			// 默认最后一个节点生效
+			return nodeList.item(nodeList.getLength() - 1).getChildNodes();
+			/**
+			 * 为什么不使用 getElementsByTagName -》 div ？
+			 * 因为这样会遍历全部div节点，包括子节点，
+			 * 而我们的需求是一级一级地处理，并不是放到同一节点下
+			 */
+		}
+		return null;
+	}
+
+	// 构建div
+	private void buildDiv(NodeList list) {
+		if (list != null && list.getLength() > 0) {
 			for (int i = 0; i < list.getLength(); i++) {
 				// 判断是否节点，是则读取
 				if (list.item(i).getNodeType() == Node.ELEMENT_NODE) {
-					Element ele = (Element) list.item(i);
-					NodeList childNodes = ((Node) ele).getChildNodes();
-
-					// 遍历子节点
-					for (int j = 0; j < childNodes.getLength(); j++) {
-						Node n = childNodes.item(j);
-						if (n.getNodeName() != "#text") {
-							switch (name) {
-							case "div":
-								// 构建节点为控件
-								buildView(n);
-								break;
-							default:
-								break;
-							}
-						}
-					}
+					NodeList childNodes = list.item(i).getChildNodes();
+					
+					buildDivChild(childNodes, null);
 				}
 			}
 		}
 	}
 	
+	// 构建div全部子节点
+	private void buildDivChild(NodeList childNodes, JPanel panel2) {
+		JPanel panel = new JPanel(); // 子容器
+		panel.setBorder(BorderFactory.createLineBorder(new Color(205, 205, 205), 1));
+		
+		if (panel2 != null) {
+			panel2.add(panel);
+		} else {
+			Panel.add(panel);
+		}
+
+		// 遍历子节点
+		for (int j = 0; j < childNodes.getLength(); j++) {
+			Node n = childNodes.item(j);
+			if (n.getNodeName() != "#text") {
+				// 构建节点为控件
+				buildView(n, panel);
+			}
+		}
+	}
+
 	/**
 	 * 构建子节点内容
 	 * @param childNodes 子节点列表
@@ -134,14 +155,13 @@ public class Reader {
 	}
 	
 	// 构建控件
-	private void buildView(Node node) {
+	private void buildView(Node node, JPanel panel) {
 		String text = node.getTextContent();
 		NamedNodeMap arributes = node.getAttributes();
 		
 		switch (node.getNodeName()) {
 		case "div":
-			// 构建子项
-			buildNode(node.getChildNodes(), "div");
+			buildDivChild(node.getChildNodes(), panel);
 			break;
 		case "span":
 			viewsManager.setTextView(text, arributes , panel);

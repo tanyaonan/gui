@@ -1,7 +1,6 @@
 package demo.gui.views;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -10,7 +9,6 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;

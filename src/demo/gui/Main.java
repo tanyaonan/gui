@@ -11,6 +11,10 @@ public class Main {
 	public static void main(String[] args) {
 		new Reader("main.xml"); // 添加xml布局到本页面
 		
+		initEvents();
+	}
+
+	private static void initEvents() {
 		// 通过id设置按钮事件
 		R.getButtonById("btn").addActionListener(new ActionListener() {
 			

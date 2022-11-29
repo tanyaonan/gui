@@ -31,13 +31,10 @@ public class LayoutManager extends LayoutAdapter {
 		
 		for (int i = 0; i < child.length; i++) {
 			Component component = child[i];
-			component.setBounds(x, y, 100, 100);
+			int viewHeight = 80;
+			component.setBounds(x, y, width, viewHeight);
 			
-			x += 100;
-			if (x > width) {
-				x = 0;
-				y += 100;
-			}
+			y += viewHeight;
 		}
 	}
 }

@@ -7,7 +7,11 @@
 		<div>
 			<span>外部</span>
 			<div>
-				<span>内部</span>
+				<span>内部0</span>
+				<div>
+					<span>内部1</span>
+					<span>内部2</span>
+				</div>
 			</div>
 			<button id="btn">点击测试</button>
 		</div>
@@ -33,7 +37,6 @@
 			</select>
 		</div>
 		<div>
-			<span>-------------------------------------------</span>
 			<h1>标题1</h1>
 			<h2>标题2</h2>
 			<h3>标题3</h3>

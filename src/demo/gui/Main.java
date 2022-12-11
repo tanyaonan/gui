@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 import demo.gui.R.R;
 import demo.gui.util.Reader;
+import demo.gui.util.ViewEvents;
+import demo.gui.util.ViewEvents.Click;
 
 public class Main {
 
@@ -16,19 +18,19 @@ public class Main {
 
 	private static void initEvents() {
 		// 通过id设置按钮事件
-		R.getButtonById("btn").addActionListener(new ActionListener() {
+		ViewEvents.addClickListener("btn", new Click() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void main() {
 				System.out.println("点击了id为btn的按钮");
 			}
 		});
 		
 		// 登录实现
-		R.getButtonById("submit").addActionListener(new ActionListener() {
+		ViewEvents.addClickListener("submit", new Click() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void main() {
 				String user = R.getInputById("user").getText();
 				String pass = R.getInputById("pass").getText();
 				

@@ -18,11 +18,11 @@
 		<div>
 			<div>
 				<span>用户名：</span>
-			    <input id="user" value="admin" />
+			    <input id="user" value="admin" placeholder="请输入用户名" />
 			</div>
 			<div>
 				<span>密码：</span>
-			    <input id="pass" type="text" />
+			    <input id="pass" type="text" placeholder="请输入密码" />
 			</div>
 		    <button id="submit">登录</button>
 		</div>

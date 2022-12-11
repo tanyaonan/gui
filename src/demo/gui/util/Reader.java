@@ -1,5 +1,14 @@
 package demo.gui.util;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.io.IOException;
+
+import javax.swing.JPanel;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -7,15 +16,6 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import demo.gui.views.ViewsManager;
-
-import javax.swing.BorderFactory;
-import javax.swing.JPanel;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import java.awt.Color;
-import java.io.IOException;
 
 /**
  * 布局阅读器
@@ -91,8 +91,8 @@ public class Reader {
 	// 构建div全部子节点
 	private void buildDivChild(NodeList childNodes, JPanel panel2) {
 		JPanel panel = new JPanel(); // 子容器
-		panel.setBorder(BorderFactory.createLineBorder(new Color(197, 196, 197), 1));
-		panel.setBackground(new Color(237, 236, 236));
+//		panel.setBorder(BorderFactory.createLineBorder(new Color(197, 196, 197), 1));
+		panel.setBackground(new Color(255, 255, 255));
 		
 		if (panel2 != null) {
 			panel2.add(panel);
@@ -152,6 +152,7 @@ public class Reader {
 				int width = Integer.parseInt(map.getNamedItem("width").getTextContent());
 				int height = Integer.parseInt(map.getNamedItem("height").getTextContent());
 				layout.setSize(width, height);
+				layout.setMinimumSize(new Dimension(width, height)); // 设置最小拉伸
 			}
 		}
 	}

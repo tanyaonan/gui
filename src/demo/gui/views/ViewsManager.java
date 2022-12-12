@@ -5,8 +5,10 @@ import java.awt.Font;
 
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JEditorPane;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JToolBar;
 
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -33,9 +35,8 @@ public class ViewsManager {
 	 *            节点容器
 	 */
 	public void setTextView(String text, NamedNodeMap arributes, JPanel panel) {
-		JLabel label = new JLabel(text);
+		TextView label = new TextView(text);
 		panel.add(label);
-		label.setForeground(new Color(45, 45, 45));
 	}
 
 	/**
@@ -61,22 +62,22 @@ public class ViewsManager {
 
 		switch (size) {
 		case 1:
-			label.setFont(new Font("微软雅黑", Font.BOLD, 32));
+			label.setFont(new Font("微软雅黑", Font.BOLD, 40));
 			break;
 		case 2:
-			label.setFont(new Font("微软雅黑", Font.BOLD, 24));
+			label.setFont(new Font("微软雅黑", Font.BOLD, 36));
 			break;
 		case 3:
-			label.setFont(new Font("微软雅黑", Font.BOLD, 18));
+			label.setFont(new Font("微软雅黑", Font.BOLD, 32));
 			break;
 		case 4:
-			label.setFont(new Font("微软雅黑", Font.BOLD, 16));
+			label.setFont(new Font("微软雅黑", Font.BOLD, 24));
 			break;
 		case 5:
-			label.setFont(new Font("微软雅黑", Font.BOLD, 13));
+			label.setFont(new Font("微软雅黑", Font.BOLD, 18));
 			break;
 		case 6:
-			label.setFont(new Font("微软雅黑", Font.BOLD, 12));
+			label.setFont(new Font("微软雅黑", Font.BOLD, 16));
 			break;
 		default:
 			break;
@@ -204,5 +205,49 @@ public class ViewsManager {
 		 * ---内容索引--- ------------ getSelectedItem() 获取选中项内容 setSelectedItem(String)
 		 * 根据内容设置选中项 remove(String) 移除指定内容的项
 		 */
+	}
+
+	/**
+	 * 导航菜单
+	 * @param arributes
+	 * @param panel
+	 * @param childNodes
+	 */
+	public void setNavView(NamedNodeMap arributes, JPanel panel, NodeList childNodes) {
+		JToolBar nav = new JToolBar();
+		panel.add(nav);
+		nav.setFloatable(false); // 不可拖动
+		
+		if (childNodes.getLength() > 0) {
+			for (int i = 0; i < childNodes.getLength(); i++) {
+				Node node = childNodes.item(i);
+				
+				// 暂时只支持span标签
+				if (node.getNodeName().equals("span")) {
+					TextView textView = new TextView(node.getTextContent());
+					nav.add(textView);
+				}
+			}
+		}
+	}
+
+	/**
+	 * 富文本
+	 * @param text
+	 * @param arributes
+	 * @param panel
+	 * @param i
+	 */
+	public void setPreView(String text, NamedNodeMap arributes, JPanel panel) {
+		JEditorPane pre = new JEditorPane();
+		panel.add(pre);
+		
+		if (arributes.getNamedItem("html") != null) {
+//			pre.setEditable(false); // 不可编辑
+//			pre.setPage(""); // 设置链接
+			pre.setContentType("text/html");
+			pre.setText(arributes.getNamedItem("html").getTextContent());
+			
+		}
 	}
 }

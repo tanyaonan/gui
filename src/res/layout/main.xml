@@ -3,7 +3,14 @@
 	<head>
 		<title>我是标题</title>
 	</head>
-	<body width="700" height="600">
+	<body width="700" height="700">
+		<div>
+			<nav>
+				<span>菜单项1</span>
+				<span>菜单项2</span>
+				<span>菜单项3</span>
+			</nav>
+		</div>
 		<div>
 			<span>嵌套测试</span>
 			<div>
@@ -47,6 +54,10 @@
 			<h4>标题4</h4>
 			<h5>标题5</h5>
 			<h6>标题6</h6>
+		</div>
+		<div>
+			<!-- 里面的数据记得转义 -->
+			<pre html="&lt;h2&gt;Hello&lt;font style=&quot;color: red&quot;&gt;World&lt;/font&gt;&lt;/h2&gt;"></pre>
 		</div>
 	</body>
 </html>

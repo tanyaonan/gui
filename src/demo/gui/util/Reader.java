@@ -179,6 +179,13 @@ public class Reader {
 			// 构建view
 			viewsManager.setSelectView(arributes, panel, node.getChildNodes());
 			break;
+		case "nav":
+			// 构建nav
+			viewsManager.setNavView(arributes, panel, node.getChildNodes());
+			break;
+		case "pre":
+			viewsManager.setPreView(text, arributes, panel);
+			break;
 		case "h1":
 			viewsManager.setTitleTextView(text, arributes, panel, 1);
 			break;

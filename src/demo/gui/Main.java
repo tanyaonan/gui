@@ -34,7 +34,7 @@ public class Main {
 				String user = R.getInputById("user").getText();
 				String pass = R.getInputById("pass").getText();
 				
-				System.out.println("user:" + user + "\npass:" + pass);
+				System.out.println("用户名：" + user + "\n密码：" + pass);
 				System.out.println("------------");
 			}
 		});
@@ -44,7 +44,7 @@ public class Main {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("agree:" + R.getCheckBoxById("cbox").isSelected());
+				System.out.println("是否选中：" + R.getCheckBoxById("cbox").isSelected());
 			}
 		});
 		
@@ -64,7 +64,7 @@ public class Main {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				boolean boo = R.getCheckBoxById("cbox").isEnabled();
-				R.getCheckBoxById("cbox").setEnabled(!boo);;
+				R.getCheckBoxById("cbox").setEnabled(!boo);
 			}
 		});
 	}
